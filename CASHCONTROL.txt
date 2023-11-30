@@ -1,0 +1,160 @@
+-- Prefix for commands
+local prefix = "!"
+
+-- Blacklisted players
+local blacklistedPlayers = {}
+
+-- Whitelisted players
+local whitelistedPlayers = {}
+
+-- Host ID
+local hostID = 1234567890
+
+-- Alts IDs
+local altsIDs = {9876543210, 8765432109, 7654321098}
+
+-- API key
+local apiKey = "YOUR_API_KEY"
+local apiURL = "YOUR_API_URL"
+
+-- Commands
+local function drop()
+  -- Code to drop cash until stopped
+end
+
+local function Cdrop(amount)
+  -- Code to drop the provided amount of cash
+end
+
+local function Stop()
+  -- Code to stop ongoing dropping
+end
+
+local function Setup(location)
+  -- Code to set up alts at location
+end
+
+local function Host(type)
+  -- Code to set up the alts at host
+end
+
+local function Ground()
+  -- Code to hide alts underground
+end
+
+local function Airlock()
+  -- Code to put alts in the air
+end
+
+local function Redeem(code)
+  -- Code to redeem the provided code
+end
+
+local function Delcash(state)
+  -- Code to delete cash from alts
+end
+
+local function Fps(amount)
+  -- Code to set fps to the inputted amount
+end
+
+local function Wallet(state)
+  -- Code to show or hide alts wallet
+end
+
+local function Advert(state)
+  -- Code to make alts say the advert message
+end
+
+-- API functions
+local function blacklistPlayer(playerID)
+  -- Code to blacklist a player
+end
+
+local function whitelistPlayer(playerID)
+  -- Code to whitelist a player
+end
+
+-- Check if player is host
+local function isHost(playerID)
+  return playerID == hostID
+end
+
+-- Check if player is allowed to use commands
+local function isAllowed(playerID)
+  return isHost(playerID) or whitelistedPlayers[playerID]
+end
+
+-- Handle player input
+local function handleInput(player, input)
+  if input.lower() and input:sub(1, 1) == prefix then
+    local command, args = input:split(" ")
+    command = command:lower()
+
+    if command == "drop" then
+      if isAllowed(player) then
+        drop()
+      else
+        player:Kick("You are not allowed to use this command.")
+      end
+    elseif command == "cdrop" then
+      if isAllowed(player) then
+        local amount = tonumber(args[1])
+        if amount then
+          Cdrop(amount)
+        else
+          player:Chat("Invalid amount.")
+        end
+      else
+        player:Kick("You are not allowed to use this command.")
+      end
+    elseif command == "stop" then
+      if isAllowed(player) then
+        Stop()
+      else
+        player:Kick("You are not allowed to use this command.")
+      end
+    elseif command == "setup" then
+      if isAllowed(player) then
+        local location = tostring(args[1])
+        if location then
+          Setup(location)
+        else
+          player:Chat("Invalid location.")
+        end
+      else
+        player:Kick("You are not allowed to use this command.")
+      end
+    elseif command == "host" then
+      if isAllowed(player) then
+        local type = tostring(args[1])
+        if type then
+          Host(type)
+        else
+          player:Chat("Invalid type.")
+        end
+      else
+        player:Kick("You are not allowed to use this command.")
+      end
+    elseif command == "ground" then
+      if isAllowed(player) then
+        Ground()
+      else
+        player:Kick("You are not allowed to use this command.")
+      end
+    elseif command == "airlock" then
+      if isAllowed(player) then
+        Airlock()
+      else
+        player:Kick("You are not allowed to use this command.")
+      end
+    elseif command == "redeem" then
+      if isAllowed(player) then
+        local code = tostring(args[1])
+        if code then
+          Redeem(code)
+        else
+          player:Chat("Invalid code.")
+        end
+      else
+        player:
