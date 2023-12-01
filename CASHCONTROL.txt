@@ -1,482 +1,135 @@
 -- Prefix for commands
 local prefix = "!"
 
--- Blacklisted players
-local blacklistedPlayers = {}
-
--- Whitelisted players
-local whitelistedPlayers = {}
+-- Alt IDs
+local altIDs = {9876543210, 8765432109, 7654321098}
 
 -- Host ID
 local hostID = 1234567890
 
--- Alts IDs
-local altsIDs = {9876543210, 8765432109, 7654321098}
-
--- API keys
-local apiKey1 = "therkdmenf"
-local apiKey2 = "iueioopqrs"
-local apiKey3 = "asdfghjkl"
-local apiKey4 = "zxcvbnm12"
-local apiKey5 = "hrhfhdhhv"
-local apiKey6 = "qwertyuiop"
-local apiKey7 = "oijnmnbvcx"
-local apiKey8 = "zasdfghjkl"
-local apiKey9 = "qazwsxedc"
-local apiKey10 = "poiuytrew"
-local apiKey11 = "x4pylejbngd8g4ex5"
-local apiKey12 = "6w7itoec05mytxzee"
-local apiKey13 = "rf9yvlwgasuj7145j"
-local apiKey14 = "2dzbcl6o25oxwg8bv"
-local apiKey15 = "2c2lqesa8xeoaifqu"
-local apiKey16 = "ktw7tgkpht0pn121e"
-local apiKey17 = "4t30o6x6lxykirt8i"
-local apiKey18 = "68fcdvqwtd8o5z0py"
-local apiKey19 = "4dq8m1qoziatjrcye"
-local apiKey20 = "wzmb83cogul08svdc"
-local apiKey21 = "zwlo1yl9nsm1thgv9"
-local apiKey22 = "nnx2jwawg3gvzq053"
-local apiKey23 = "y2jbpdh25dhftlekb"
-local apiKey24 = "iaa5w6ivebxmn08u3"
-local apiKey25 = "zqibutgy307qo00qn"
-local apiKey26 = "lteu9mrhz6ehwhm3s"
-local apiKey27 = "m08wud87fjypvvn5q"
-local apiKey28 = "mfwario614bg5oh0c"
-local apiKey29 = "ult8z01q4cviidia3"
-local apiKey30 = "o6wmxnpbzeo2k038d"
-local apiKey31 = "rlamvqgr25gqcwipy"
-local apiKey32 = "ydbhpum0itop62av5"
-local apiKey33 = "jywqlhl5bbboj1nw1"
-local apiKey34 = "pasx53w277eoo37c5"
-local apiKey35 = "i2od5hh6g05kekcad"
-local apiKey36 = "2bbauzen1j4gpj1u5"
-local apiKey37 = "2x1vsjuv8lo9s53zz"
-local apiKey38 = "u6vbveigeeejnf59z"
-local apiKey39 = "3ezq2pyh3v78okhsa"
-local apiKey40 = "nggxau45hzisr8a5s"
-
+-- API key
+local apiKey = "YOUR_API_KEY"
+local apiURL = "YOUR_API_URL"
 
 -- Commands
 local function drop()
-  if not amount or amount <= 0 then
-    player:Chat("Invalid amount.")
-    return
-end
-
+  -- Code to drop cash until stopped
 end
 
 local function Cdrop(amount)
-  if command == "cdrop" then
-    if isAllowed(player) then
+  -- Code to drop the provided amount of cash
+end
+
+local function Stop()
+  -- Code to stop ongoing dropping
+end
+
+local function Setup(location)
+  -- Code to set up alts at location
+end
+
+local function Host(type)
+  -- Code to set up the alts at host
+end
+
+local function Ground()
+  -- Code to hide alts underground
+end
+
+local function Airlock()
+  -- Code to put alts in the air
+end
+
+local function Redeem(code)
+  -- Code to redeem the provided code
+end
+
+local function Delcash(state)
+  -- Code to delete cash from alts
+end
+
+local function Fps(amount)
+  -- Code to set fps to the inputted amount
+end
+
+local function Wallet(state)
+  -- Code to show or hide alts wallet
+end
+
+local function Advert(state)
+  -- Code to make alts say the advert message
+end
+
+-- Handle player input
+local function handleInput(player, input)
+  if input.lower() and input:sub(1, 1) == prefix then
+
+    local command, args = input:split(" ")
+    command = command:lower()
+
+    if command == "drop" then
+      drop()
+    elseif command == "cdrop" then
       local amount = tonumber(args[1])
       if amount then
         Cdrop(amount)
       else
         player:Chat("Invalid amount.")
       end
-    else
-      player:Kick("You are not allowed to use this command." -- Add this line
-    end
-  end
-
-
-local function Stop()
--- Function to stop ongoing dropping
-local function Stop()
-  do return droppingStopped end
-
-  local droppingStopped = true
-
-  -- Loop through all alts
-  for i, altID in ipairs(altsIDs) do
-    -- Get the alt object
-    local alt = game.GetPlayer(altID)
-
-    -- Check if the alt is valid
-    if alt then
-      -- Check if the alt is controlled by the host
-      if alt.ControlledBy == hostID then
-        -- Set the alt's dropping state to false
-        alt.Dropping = false
-      end
-    end
-  end
-
-  -- Return the flag indicating dropping has stopped
-  return droppingStopped
-  end
-end
-
-local function Setup(location)
-  local function setupAlts(location)
-    -- Loop through all alt IDs
-    for i, altID in ipairs(altsIDs) do
-        -- Get the alt object
-        local alt = game.GetPlayer(altID)
-
-        -- Check if the alt is valid and controlled by the host
-        if alt and alt.ControlledBy == hostID then
-            -- Set the alt's position based on the provided location
-            if location == "bank" then
-                alt.Position = Vector3.new(2167.221, 16.837, -1019.870)
-            elseif location == "train" then
-                alt.Position = Vector3.new(756.574, 16.837, -1012.445)
-            elseif location == "bankvault" then
-                alt.Position = Vector3.new(2167.221, 16.837, -1019.870)
-            else
-                error("Invalid location: " .. location)
-            end
-
-            -- Perform any additional setup tasks specific to the location
-            -- For example, opening doors or interacting with objects
-        end
-    end
-end
-
-end
-
-local function Host(type)
-  local function setupHostAlts()
-     for i, altID in ipairs(altsIDs) do
-       local alt = game.GetPlayer(altID)
-
-       if alt and alt.ControlledBy == hostID then
-           alt.Position = Vector3.new-- Replace these placeholder coordinates with the actual host coordinates
-           local hostXCoordinate = 2167.221
-           local hostYCoordinate = 16.837
-           local hostZCoordinate = -1019.870
-           
-           -- Set up alts at the host location
-           setupHostAlts()
-       end
-   end
-end
-
-local function Ground()
-  local function hideAltsUnderground()
-    for i, altID in ipairs(altsIDs) do
-        local alt = game.GetPlayer(altID)
-
-        if alt and alt.ControlledBy == hostID then
-            -- Set the alt's position underground
-            alt.Position = Vector3.new(alt.Position.X, -1000, alt.Position.Z)
-
-            -- Make the alt invisible
-            alt:SetTransparency(1)
-        end
-    end
-end
-end
-
--- Function to check if a key is already in use
-local function isKeyInUse(key)
-  -- Initialize a variable to track if the key is in use
-  local keyInUse = false
-
-  -- Loop through all players
-  for _, player in ipairs(game.GetPlayers()) do
-    -- Check if the player's key matches the provided key
-    if player.Key == key then
-      -- Set the flag indicating the key is in use
-      keyInUse = true
-
-      -- Break out of the loop since the key has been found
-      break
-    end
-  end
-
-  -- Return whether the key is in use
-  return keyInUse
-end
-
--- Function to blacklist a player
-local function blacklistPlayer(playerID)
-  -- Check if the player ID is valid
-  if not playerID then
-    return false
-  end
-
-  -- Check if the player is already blacklisted
-  if blacklistedPlayers[playerID] then
-    return false
-  end
-
-  -- Add the player ID to the blacklistedPlayers table
-  blacklistedPlayers[playerID] = true
-
-  -- Return true to indicate success
-  return true
-end
-
--- Main function to handle key usage and blacklisting
-local function handleKeyUsage(player, key)
-  -- Check if the key is already in use
-  if isKeyInUse(key) then
-    -- Blacklist the player attempting to use the same key
-    blacklistPlayer(player.ID)
-
-    -- Send a message to the player informing them of the blacklisting
-    player:Chat("You have been blacklisted for using the same key as another player.")
-  else
-    -- Assign the key to the player
-    player.Key = key
-
-    -- Send a message to the player confirming the key assignment
-    player:Chat("Key assigned successfully.")
-  end
-end
-
-
-local function Airlock()
--- Function to put alts in the air
-local function Airlock()
-  -- Loop through all alts
-  for i, altID in ipairs(altsIDs) do
-    -- Get the alt object
-    local alt = game.GetPlayer(altID)
-
-    -- Check if the alt is valid
-    if alt then
-      -- Check if the alt is controlled by the host
-      if alt.ControlledBy == hostID then
-        -- Set the alt's position to a high altitude
-        alt.Position = Vector3.new(alt.Position.X, 500, alt.Position.Z)
-      end
-    end
-  end
-end
-
-end
-
-local function Redeem(code)
-Lua
--- Function to redeem the provided code
-local function Redeem(code)
-  -- Validate the provided code
-  if not code or not isstring(code) then
-    player:Chat("Invalid code.")
-    return
-  end
-
-  -- Check if the code is valid
-  -- Replace this placeholder code with the actual code validation logic
-  -- This logic should check the provided code against a database or API
-  -- to determine its validity and any associated rewards or actions
-  if code == "YOUR_VALID_CODE" then
-    -- Code is valid, process rewards or actions
-    -- Replace this placeholder code with the actual reward or action logic
-    player:Chat("Code redeemed! You have received 1000 cash.")
-    player:GiveCash(1000)
-  else
-    player:Chat("Invalid code.")
-    local function Redeem(code)
-      -- Validate the provided code
-      if not code or not isstring(code) then
-        player:Chat("Invalid code.")
-        return
-    end    
-  end
-end
-
-local function Delcash(state)
-Function to delete cash from alts
-local function Delcash(state)
-    -- Loop through all alts
-    for i, altID in ipairs(altsIDs) do
-        -- Get the alt object
-        local alt = game.GetPlayer(altID)
-
-        -- Check if the alt is valid
-        if alt then
-            -- Check if the alt is controlled by the host
-            if alt.ControlledBy == hostID then
-                -- Delete all cash from the alt
-                alt:GiveCash(0)
-                local function Delcash()
-                  for i, altID in ipairs(altsIDs) do
-                      local alt = game.GetPlayer(altID)
-                      if alt then
-                          if alt.ControlledBy == hostID then
-                              alt:GiveCash(0)
-                          end
-                      end
-                  end
-              end
-              
-            end
-        end
-  end
-
-local function Fps(amount)
-  fpscap(120)
-end
-
-local function Wallet(state)
--- Function to show or hide alts' wallets
-local function Wallet(state)
-    -- Loop through all alts
-    for i, altID in ipairs(altsIDs) do
-        -- Get the alt object
-        local alt = game.GetPlayer(altID)
-
-        -- Check if the alt is valid
-        if alt then
-            -- Check if the alt is controlled by the host
-            if alt.ControlledBy == hostID then
-                -- Show or hide the alt's wallet based on the state
-                if state then
-                    alt:ShowWallet(true)
-                else
-                    alt:ShowWallet(false)
-                end
-            end
-        end
-    end
-
-end
-
-local function Advert(state)
- -- Function to make alts say the advert message
-local function Advert(state)
-  -- Loop through all alts
-  for i, altID in ipairs(altsIDs) do
-    -- Get the alt object
-    local alt = game.GetPlayer(altID)
-
-    -- Check if the alt is valid
-    if alt then
-      -- Check if the alt is controlled by the host
-      if alt.ControlledBy == hostID then
-        -- Make the alt say the advert message if the state is true
-        if state then
-          alt:Chat("BEST DHC FOR CHEAP AT .gg/a32RX7SzPU")
-        end
-      end
-    end
-  end
-end
-
--- API functions
-local function blacklistPlayer(playerID)
--- Function to blacklist a player
-local function blacklistPlayer(playerID)
-    -- Check if the player ID is valid
-    if not playerID then
-        return false
-    end
-
-    -- Check if the player is already blacklisted
-    if blacklistedPlayers[playerID] then
-        return false
-    end
-
-    -- Add the player ID to the blacklistedPlayers table
-    blacklistedPlayers[playerID] = true
-
-    -- Return true to indicate success
-    return true
-end
-
-local function whitelistPlayer(playerID)
--- Function to whitelist a player
-local function whitelistPlayer(playerID)
-    -- Check if the player ID is valid
-    if not playerID then
-        return false
-    end
-
-    -- Check if the player is already whitelisted
-    if whitelistedPlayers[playerID] then
-        return false
-    end
-
-    -- Add the player ID to the whitelistedPlayers table
-    whitelistedPlayers[playerID] = true
-
-    -- Return true to indicate success
-    return true
-end
-
--- Check if player is host
-local function isHost(playerID)
-  return playerID == hostID
-end
-
--- Check if player is allowed to use commands
-local function isAllowed(playerID)
-  return isHost(playerID) or whitelistedPlayers[playerID]
-end
-
--- Handle player input
-local function handleInput(player, input)
-  if input.lower() and input:sub(1, 1) == prefix then
-    local command, args = input:split(" ")
-    command = command:lower()
-
-    if command == "drop" then
-      if isAllowed(player) then
-        drop()
-      else
-        player:Kick("You are not allowed to use this command.")
-      end
-    elseif command == "cdrop" then
-      if isAllowed(player) then
-        local amount = tonumber(args[1])
-        if amount then
-          Cdrop(amount)
-        else
-          player:Chat("Invalid amount.")
-        end
-      else
-        player:Kick("You are not allowed to use this command.")
-      end
     elseif command == "stop" then
-      if isAllowed(player) then
-        Stop()
-      else
-        player:Kick("You are not allowed to use this command.")
-      end
+      Stop()
     elseif command == "setup" then
-      if isAllowed(player) then
-        local location = tostring(args[1])
-        if location then
-          Setup(location)
-        else
-          player:Chat("Invalid location.")
-        end
+      local location = tostring(args[1])
+      if location then
+        Setup(location)
       else
-        player:Kick("You are not allowed to use this command.")
+        player:Chat("Invalid location.")
       end
     elseif command == "host" then
-      if isAllowed(player) then
-        local type = tostring(args[1])
-        if type then
-          Host(type)
-        else
-          player:Chat("Invalid type.")
-        end
+      local type = tostring(args[1])
+      if type then
+        Host(type)
       else
-        player:Kick("You are not allowed to use this command.")
+        player:Chat("Invalid type.")
       end
     elseif command == "ground" then
-      if isAllowed(player) then
-        Ground()
-      else
-        player:Kick("You are not allowed to use this command.")
-      end
+      Ground()
     elseif command == "airlock" then
-      if isAllowed(player) then
-        Airlock()
-      else
-        player:Kick("You are not allowed to use this command.")
-      end
+      Airlock()
     elseif command == "redeem" then
-      if isAllowed(player) then
-        local code = tostring(args[1])
-        if code then
-          Redeem(code)
-        else
-          player:Chat("Invalid code.")
-        end
+      local code = tostring(args[1])
+      if code then
+        Redeem(code)
       else
-        player:
+        player:Chat("Invalid code")
+      end
+    elseif command == "delcash" then
+      local state = tostring(args[1])
+      if state then
+        Delcash(state)
+      else
+        player:Chat("Invalid state.")
+      end
+    elseif command == "fps" then
+      local amount = tonumber(args[1])
+      if amount then
+        Fps(amount)
+      else
+        player:Chat("Invalid amount.")
+      end
+    elseif command == "wallet" then
+      local state = tostring(args[1])
+      if state then
+        Wallet(state)
+      else
+        player:Chat("Invalid state.")
+      end
+    elseif command == "advert" then
+      local state = tostring(args[1])
+      if state then
+        Advert(state)
+      else
+        player:Chat("Invalid state.")
+      end
+  end
+end
