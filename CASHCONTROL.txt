@@ -9,7 +9,6 @@ local hostID = 1234567890
 
 -- API key
 local apiKey = "YOUR_API_KEY"
-local apiURL = "YOUR_API_URL"
 
 -- Commands
 local function drop()
