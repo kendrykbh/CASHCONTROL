@@ -7,6 +7,10 @@ local altIDs = {9876543210, 8765432109, 7654321098}
 -- Host ID
 local hostID = 1234567890
 
+-- API keys
+
+local apiKey1 = "12345678"
+
 -- API key
 local apiKey = "YOUR_API_KEY"
 
